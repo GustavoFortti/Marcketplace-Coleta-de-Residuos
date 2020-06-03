@@ -1,1 +1,1 @@
-# Marketplace-de-coleta-de-res-duos
+# Marketplace-de-coleta-de-resíduos

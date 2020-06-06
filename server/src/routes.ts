@@ -1,12 +1,62 @@
 import express from 'express';
 
-const routes = express.Router();
+import PointsController from './controllers/PointsController';
+import ItemsController from './controllers/ItemsController';
 
-routes.get('/', (request, response) => {
-    return response.json({ message: 'Hello world'});
-});
+// index, show, create, update, delete
+
+const routes = express.Router();
+const pointsController = new PointsController();
+const itemsController = new ItemsController();
+
+routes.get('/items', itemsController.index);
+routes.post('/points', pointsController.create);
+routes.get('/points/', pointsController.index);
+routes.get('/points/:id', pointsController.show);
 
 export default routes;
+
+// Service pattern
+// Repository Patter (Data Mapper)
+
+// routes.post('/points', async (request, response) => {
+//     const {
+//         name,
+//         email,
+//         whatsapp,
+//         latitude,
+//         longitude,
+//         city,
+//         uf,
+//         items
+//     } = request.body;
+
+//     const trx = await knex.transaction();
+
+//     const insertedIds =  await trx('points').insert({
+//         image: 'image-fake',
+//         name,
+//         email,
+//         whatsapp,
+//         latitude,
+//         longitude,
+//         city,
+//         uf,
+//     });
+
+//     const point_id = insertedIds[0];
+
+//     const pointItems = items.map((item_id: number) => {
+//         return {
+//             item_id,
+//             point_id,
+//         };
+//     });
+//     await trx('point_items').insert(pointItems);
+
+//     return response.json({ success: true});
+// });
+
 
 // Rota: Endereço completo da requisição
 // Recurso: Qual entidade estams acessando no sistema
@@ -27,6 +77,17 @@ export default routes;
 // SELECT * FROM users WHERE name = 'Gustavo';
 // knex('users').where('name', 'Gustavo').select('*');
 
+
+// import path from 'path';
+// const app = express();
+
+// app.use(express.json());
+// app.use(routes);
+
+// app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
+ 
+// app.listen(3333);
+
 // const users = [
 //     'Gustavo',
 //     'Julia',
@@ -46,7 +107,7 @@ export default routes;
 //     return response.json(user);
 // });
 
-// app.post('/users', (request, response) => {
+// routes.get('/users', (request, response) => {
 //     const data = request.body;
 //     console.log(data);
 //     const user = {

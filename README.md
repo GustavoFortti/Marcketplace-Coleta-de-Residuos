@@ -1,1 +1,1 @@
-# Marketplace-de-coleta-de-resíduos
+# Marketplace-de-coleta-de-resíduos (TypeScript, JavaScript, ReactJS)

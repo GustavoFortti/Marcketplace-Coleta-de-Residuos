@@ -3,6 +3,6 @@
 ## 🚀 Tecnologias
 
 - Node.js
-- React Native
+- React.js
 - TypeScript
 - Expo
